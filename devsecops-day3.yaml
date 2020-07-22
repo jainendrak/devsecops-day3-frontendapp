@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: jai-ns
+spec: {}
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: jaiday3webappv003
+  name: jaiday3webappv003
+  namespace: jai-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jaiday3webappv003
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: jaiday3webappv003
+    spec:
+      containers:
+      - image: jainendrak/devsecopsday3:v003
+        name: devsecopsday3
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: jaiwebappday3v003
+  name: jaiwebappday3v003i
+  namespace: jai-ns
+spec:
+  ports:
+  - name: 11237-80
+    port: 11237
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: jaiday3webappv003
+  type: NodePort
+status:
+  loadBalancer: {}
