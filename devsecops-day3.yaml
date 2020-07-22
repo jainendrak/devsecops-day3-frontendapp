@@ -29,6 +29,7 @@ spec:
       containers:
       - image: jainendrak/devsecopsday3:v003
         name: devsecopsday3
+        imagePullPolicy: Always
         resources: {}
 status: {}
 ---
